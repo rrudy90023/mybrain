@@ -18,44 +18,15 @@ $(function(){
 
 
 
-
-
-
-
-
-                        // var tiles = 0;
-                        // var empty = 0;
-                        // var group = $("#container > div");
-                        // var mom = $("container");
-                        var scatter = setInterval(function() {
-                            shines();
-                            counter++;
-                        },3000);
-
-
-                        // function shines(){
-                        //     if(group.length === 1){
-                        //         clearInterval(scatter);
-                        //     } else {
-                                
-                        //         var randomnumber = Math.floor(Math.random() * $('#container').children().length);
-                        //         $('#container > div:eq(' + randomnumber + ')').fadeOut().remove();
-                                
-                        //         //console.log(mom);
-                        //     }
-                        // };
-
-
-
-                function shines() {
-
                     $.each(firstItem, function(key, val){
 
                         $("<div/>").appendTo("#container");
 
-                        var randomnumber = Math.floor(Math.random() * firstItem.length);
+                        //var randomnumber = Math.floor(Math.random() * firstItem.length);
 
                         var li = $("#container div").eq(counter);
+
+                         counter++;
 
                         var tags = val.tags[0];
 
@@ -66,22 +37,44 @@ $(function(){
                         $("<img />").attr("src", src).appendTo(li);
 
                         li.addClass(tags).addClass('item');
-     
-                        return false;
+             
+                        var group = $("#container > div");
+                        var mom = $("container");
+                        var tiles = 0;
+                        var scatter = setInterval(function() {
+
+                            shines();
+                            tiles++;
+                        },3000);
+
+
+                        function shines(){
+                            // if(group.length === firstItem.length){
+                            //     clearInterval(scatter);
+                            // } else {
+                                
+                                //var randomnumber = Math.floor(Math.random() * $('#container').children().length);
+                                $('#container > div:eq(' + tiles + ')').addClass('appear');
+                                
+                                if($('#container > div:eq(' + tiles + ')').css('opacity') == 1){
+
+
+                                    $(this).removeClass('appear');
+
+                                } else {
+
+                                    return false
+                                }
+
+                        };
+
+                        //return false;
                       
-
                     });
-
-
-                    return false;
-
-                };
-
 
                     return false;
                         
                 });
-
 
 
                 // var i = $(this).index();

@@ -1,4 +1,7 @@
-$(function(){
+$(document).ready(function(){
+
+
+
 
 
 
@@ -7,6 +10,8 @@ $(function(){
             url: "http://api.tumblr.com/v2/blog/rrudy90023.tumblr.com/posts?api_key=hdTlQ7XSADs3ufoJR0NhzpQdqCA1XtaVnLW4Q21OOydB26T7m0",
             dataType: 'jsonp',
             success: function (result) {
+
+
 
                 console.log(result);
 
@@ -18,44 +23,15 @@ $(function(){
 
 
 
-
-
-
-
-
-                        // var tiles = 0;
-                        // var empty = 0;
-                        // var group = $("#container > div");
-                        // var mom = $("container");
-                        var scatter = setInterval(function() {
-                            shines();
-                            counter++;
-                        },3000);
-
-
-                        // function shines(){
-                        //     if(group.length === 1){
-                        //         clearInterval(scatter);
-                        //     } else {
-                                
-                        //         var randomnumber = Math.floor(Math.random() * $('#container').children().length);
-                        //         $('#container > div:eq(' + randomnumber + ')').fadeOut().remove();
-                                
-                        //         //console.log(mom);
-                        //     }
-                        // };
-
-
-
-                function shines() {
-
                     $.each(firstItem, function(key, val){
 
                         $("<div/>").appendTo("#container");
 
-                        var randomnumber = Math.floor(Math.random() * firstItem.length);
+                        //var randomnumber = Math.floor(Math.random() * firstItem.length);
 
                         var li = $("#container div").eq(counter);
+
+                         counter++;
 
                         var tags = val.tags[0];
 
@@ -66,35 +42,52 @@ $(function(){
                         $("<img />").attr("src", src).appendTo(li);
 
                         li.addClass(tags).addClass('item');
-     
-                        return false;
-                      
+                 
+                        $('#celloader').click(function(){
+
+                            $('#celloader').remove();
+                            $('.splash').remove();
+                            var tiles = 0;
+                            var scatter = setInterval(function() {
+
+                                shines();
+                                tiles++;
+                                console.log("fade")
+                            },900);
+
+                            function shines(){
+                                    
+                                    //var randomnumber = Math.floor(Math.random() * $('#container').children().length);
+                                    $('#container > div:eq(' + tiles + ')').addClass('appear');
+
+
+                                    $('#container > div:eq(' + tiles + ')').on(
+                                        "webkitAnimationEnd oanimationend msAnimationEnd animationend",
+                                        function() {
+                                            //$(this).delay(6000).queue(function() {  // Wait for 1 second.
+                                                $(this).removeClass("appear").dequeue();
+                                                $(this).css('opacity','1.0');
+                                            //});
+                                        }
+                                    );
+
+                                    if($('#container > div').last().css('opacity') == 1){
+                                        //alert("hello");
+                                        clearInterval(scatter);
+                                    } else {
+
+                                        return false;
+                                    }
+
+                            };
+
+                        });
 
                     });
-
-
-                  
-
-                };
-
 
                     return false;
                         
                 });
-
-
-
-                // var i = $(this).index();
-
-                // var group = $("#container > div");
-
-                // if(group.hasClass("home")){
-
-                //     $('.home').fadeOut();
-
-                //     console.log("im here")
-                
-                // };
 
 
 

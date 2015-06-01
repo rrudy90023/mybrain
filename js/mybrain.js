@@ -3,15 +3,10 @@ $(document).ready(function(){
 
 
 
-
-
-
         $.ajax({
             url: "http://api.tumblr.com/v2/blog/rrudy90023.tumblr.com/posts?api_key=hdTlQ7XSADs3ufoJR0NhzpQdqCA1XtaVnLW4Q21OOydB26T7m0",
             dataType: 'jsonp',
             success: function (result) {
-
-
 
                 console.log(result);
 
@@ -20,6 +15,8 @@ $(document).ready(function(){
                     var firstItem = result.response.posts;
 
                     var counter = 0;
+
+
 
 
 
@@ -42,11 +39,16 @@ $(document).ready(function(){
                         $("<img />").attr("src", src).appendTo(li);
 
                         li.addClass(tags).addClass('item');
-                 
+             
+
                         $('#celloader').click(function(){
 
                             $('#celloader').remove();
                             $('.splash').remove();
+
+
+                            var group = $("#container > div");
+                            var mom = $("container");
                             var tiles = 0;
                             var scatter = setInterval(function() {
 
